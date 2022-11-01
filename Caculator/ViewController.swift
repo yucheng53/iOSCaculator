@@ -16,9 +16,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var acButton: UIButton!
     
     @IBOutlet weak var plusButton: UIButton!
+    
     var displayData = "0"
     var temp = "0"
     var functionalitySign = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         displayScreenLabel.text = displayData
@@ -33,6 +35,10 @@ class ViewController: UIViewController {
         displayScreenLabel.text = displayData
     }
     
+    func mathHandler() {
+        
+    }
+    
     @IBAction func acButtonClicked(_ sender: Any) {
         displayData = "0"
         displayScreenLabel.text = displayData
@@ -42,15 +48,100 @@ class ViewController: UIViewController {
     @IBAction func btn1Clicked(_ sender: Any) {
         displayHandler(inputStuff: "1")
     }
+    @IBAction func btn2Clicked(_ sender: Any) {
+        displayHandler(inputStuff: "2")
+    }
+    @IBAction func btn3Clicked(_ sender: Any) {
+        displayHandler(inputStuff: "3")
+    }
+
+    @IBAction func btn4Clicked(_ sender: Any) {
+        displayHandler(inputStuff: "4")
+    }
+    
+    @IBAction func btn5Clicked(_ sender: Any) {
+        displayHandler(inputStuff: "5")
+    }
+    @IBAction func btn6Clicked(_ sender: Any) {
+        displayHandler(inputStuff: "6")
+    }
+    @IBAction func btn7Clicked(_ sender: Any) {
+        displayHandler(inputStuff: "7")
+    }
+    @IBAction func btn8Clicked(_ sender: Any) {
+        displayHandler(inputStuff: "8")
+    }
+    @IBAction func btn9Clicked(_ sender: Any) {
+        displayHandler(inputStuff: "9")
+    }
+    @IBAction func btn0Clicked(_ sender: Any) {
+        if displayData == "0" {
+            return
+        } else {
+            displayHandler(inputStuff: "0")
+        }
+    }
+    
+    
+    @IBAction func btnDotClicked(_ sender: Any) {
+        if displayData.contains(".") {
+            return
+        } else {
+            if displayData == "0" {
+                displayHandler(inputStuff: "0.")
+            } else {
+                displayHandler(inputStuff: ".")
+            }
+        }
+    }
     
     @IBAction func plusButtonClicked(_ sender: Any) {
         temp = displayData
         functionalitySign = "+"
         displayData = "0"
         displayScreenLabel.text = displayData
-        
-        
-        
+    }
+    
+    @IBAction func subButtonClicked(_ sender: Any) {
+        temp = displayData
+        functionalitySign = "-"
+        displayData = "0"
+        displayScreenLabel.text = displayData
+    }
+    
+    @IBAction func multiBtnClicked(_ sender: Any) {
+        temp = displayData
+        functionalitySign = "x"
+        displayData = "0"
+        displayScreenLabel.text = displayData
+    }
+    
+    @IBAction func divideBtnClicked(_ sender: Any) {
+        temp = displayData
+        functionalitySign = "/"
+        displayData = "0"
+        displayScreenLabel.text = displayData
+    }
+    
+    @IBAction func equalBtnClicked(_ sender: Any) {
+        switch functionalitySign {
+        case "+":
+            displayData = String(Double(temp)! + Double(displayData)!)
+        case "-":
+            displayData = String(Double(temp)! - Double(displayData)!)
+        case "x":
+            displayData = String(Double(temp)! * Double(displayData)!)
+        case "/":
+            displayData = String(Double(temp)! / Double(displayData)!)
+        default:
+            return
+        }
+        if((Double(displayData)?.truncatingRemainder(dividingBy: 1)) == 0 ) {
+            displayData.popLast()
+            displayData.popLast()
+        }
+        displayScreenLabel.text = displayData
+        functionalitySign = ""
     }
     
 }
