@@ -35,15 +35,11 @@ class ViewController: UIViewController {
         displayScreenLabel.text = displayData
     }
     
-    func mathHandler() {
-        
-    }
-    
+
     @IBAction func acButtonClicked(_ sender: Any) {
         displayData = "0"
         displayScreenLabel.text = displayData
     }
-    
     
     @IBAction func btn1Clicked(_ sender: Any) {
         displayHandler(inputStuff: "1")
@@ -54,11 +50,9 @@ class ViewController: UIViewController {
     @IBAction func btn3Clicked(_ sender: Any) {
         displayHandler(inputStuff: "3")
     }
-
     @IBAction func btn4Clicked(_ sender: Any) {
         displayHandler(inputStuff: "4")
     }
-    
     @IBAction func btn5Clicked(_ sender: Any) {
         displayHandler(inputStuff: "5")
     }
@@ -82,7 +76,6 @@ class ViewController: UIViewController {
         }
     }
     
-    
     @IBAction func btnDotClicked(_ sender: Any) {
         if displayData.contains(".") {
             return
@@ -94,33 +87,26 @@ class ViewController: UIViewController {
             }
         }
     }
-    
-    @IBAction func plusButtonClicked(_ sender: Any) {
+    func functionOperationHandler(OperationSign: String) {
         temp = displayData
-        functionalitySign = "+"
+        functionalitySign = OperationSign
         displayData = "0"
         displayScreenLabel.text = displayData
+    }
+    @IBAction func plusButtonClicked(_ sender: Any) {
+        functionOperationHandler(OperationSign: "+")
     }
     
     @IBAction func subButtonClicked(_ sender: Any) {
-        temp = displayData
-        functionalitySign = "-"
-        displayData = "0"
-        displayScreenLabel.text = displayData
+        functionOperationHandler(OperationSign: "-")
     }
     
     @IBAction func multiBtnClicked(_ sender: Any) {
-        temp = displayData
-        functionalitySign = "x"
-        displayData = "0"
-        displayScreenLabel.text = displayData
+        functionOperationHandler(OperationSign: "x")
     }
     
     @IBAction func divideBtnClicked(_ sender: Any) {
-        temp = displayData
-        functionalitySign = "/"
-        displayData = "0"
-        displayScreenLabel.text = displayData
+        functionOperationHandler(OperationSign: "/")
     }
     
     @IBAction func equalBtnClicked(_ sender: Any) {
@@ -137,8 +123,7 @@ class ViewController: UIViewController {
             return
         }
         if((Double(displayData)?.truncatingRemainder(dividingBy: 1)) == 0 ) {
-            displayData.popLast()
-            displayData.popLast()
+            displayData.removeLast(2)
         }
         displayScreenLabel.text = displayData
         functionalitySign = ""
